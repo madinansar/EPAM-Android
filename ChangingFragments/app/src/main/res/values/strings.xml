@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Changing Fragments</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="change_colors">CHANGE COLORS</string>
+    <string name="second_fragment">Second Fragment</string>
+    <string name="third_fragment">Third Fragment</string>
+    <string name="main_activity">Main Activity</string>
+    <string name="hello_from_firstfragment">Hello from FirstFragment!</string>
+    <string name="working">Working</string>
+    <string name="swap_fragments">Swap Fragments</string>
+</resources>

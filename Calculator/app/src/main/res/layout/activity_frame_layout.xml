@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FrameLayout_Activity">
+
+    <TextView
+        android:id="@+id/textView"
+
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="5dp"
+        android:background="@color/purple_200"
+        android:textSize="30sp"
+ />
+
+    <Button
+        android:id="@+id/seven"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/_7"
+        android:textSize="40sp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="210dp"
+        />
+
+    <Button
+        android:id="@+id/eight"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:text="@string/_8"
+        android:textSize="40sp"
+        android:layout_gravity="top"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="210dp"/>
+
+    <Button
+        android:id="@+id/nine"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:text="@string/_9"
+        android:textSize="40sp"
+        android:layout_gravity="top"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="210dp"
+        />
+
+    <Button
+        android:id="@+id/plus"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:text="@string/plus"
+        android:textSize="40sp"
+        android:layout_marginStart="310dp"
+        android:layout_marginTop="210dp"
+        />
+
+
+
+
+    <Button
+        android:id="@+id/four"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/_4"
+        android:textSize="40sp"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="310dp"
+        />
+
+    <Button
+        android:id="@+id/five"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:text="@string/_5"
+        android:textSize="40sp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="310dp"/>
+
+    <Button
+        android:id="@+id/six"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:text="@string/_6"
+        android:textSize="40sp"
+        android:layout_gravity="top"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="310dp"
+        />
+
+    <Button
+        android:id="@+id/minus"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:text="@string/minus"
+        android:textSize="40sp"
+        android:layout_marginStart="310dp"
+        android:layout_marginTop="310dp"
+        />
+
+    <Button
+        android:id="@+id/one"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@string/_1"
+        android:textSize="40sp"
+        android:layout_gravity="top"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="410dp"
+        />
+
+    <Button
+        android:id="@+id/two"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:text="@string/_2"
+        android:textSize="40sp"
+        android:layout_gravity="top"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="410dp"/>
+
+    <Button
+        android:id="@+id/three"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:text="@string/_3"
+        android:textSize="40sp"
+        android:layout_gravity="top"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="410dp"
+        />
+
+    <Button
+        android:id="@+id/multiply"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:text="@string/multiply"
+        android:textSize="40sp"
+        android:layout_marginStart="310dp"
+        android:layout_marginTop="410dp"
+        />
+
+</FrameLayout>
