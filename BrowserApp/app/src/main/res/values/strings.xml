@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Browser App</string>
+    <string name="search">Search</string>
+    <string name="blue_brown">Blue</string>
+    <string name="green_yellow">Green</string>
+    <string name="violet_orange">Violet</string>
+    <string name="browser_app">Browser App</string>
+    <string name="web_link">web link</string>
+</resources>
