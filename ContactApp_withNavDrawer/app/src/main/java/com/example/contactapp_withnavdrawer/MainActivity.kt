@@ -22,9 +22,7 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
-            supportFragmentManager.commit {
-                replace(R.id.fragment_container, ContactsFragment())
-            }
+            openContactsFragment()
         } else {
             Toast.makeText(this, "permission denied", Toast.LENGTH_SHORT).show()
         }
@@ -53,11 +51,15 @@ class MainActivity : AppCompatActivity() {
     private fun checkAndRequestPermission() {
         val permission = Manifest.permission.READ_CONTACTS
         if (ContextCompat.checkSelfPermission(this, permission) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
-            supportFragmentManager.commit {
-                replace(R.id.fragment_container, ContactsFragment())
-            }
+            openContactsFragment()
         } else {
             permissionLauncher.launch(permission)
         }
     }
+    private fun openContactsFragment() {
+        supportFragmentManager.commit {
+            replace(R.id.fragment_container, ContactsFragment())
+        }
+    }
+
 }
