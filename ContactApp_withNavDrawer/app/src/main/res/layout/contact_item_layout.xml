@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/pfp"
+        tools:src = "@drawable/default_image"
+        />
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        tools:text = "ABC DEF"
+        />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="14sp"
+        android:textColor="@android:color/holo_blue_dark"
+        tools:text = "123467"
+        />
+</LinearLayout>
