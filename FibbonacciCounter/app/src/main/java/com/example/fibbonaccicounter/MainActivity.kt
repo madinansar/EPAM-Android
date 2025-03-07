@@ -1,124 +1,172 @@
 package com.example.fibbonaccicounter
-
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.os.bundleOf
+import androidx.lifecycle.lifecycleScope
 import com.example.fibbonaccicounter.databinding.ActivityMainBinding
-import com.example.fibbonaccicounter.ui.theme.FibbonacciCounterTheme
-import kotlin.concurrent.thread
+import kotlinx.coroutines.*
 
 class MainActivity : ComponentActivity() {
+
     private lateinit var binding: ActivityMainBinding
-    private val handler by lazy{
-        Handler(Looper.getMainLooper()) { message ->
-            binding.tvCounter.text = message.data.getString(COUNTER_KEY)
-            true
-        }
-    }
-    private var counterThread: Thread? = null
+    private var currentCount = 0
+    private var userValue = 0
     private var isRunning = false
+
+    private var a = 0
+    private var b = 1
+    private var fibValue = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //restore:
+        savedInstanceState?.let {
+            currentCount = it.getInt("CURRENT_COUNT", 0)
+            userValue = it.getInt("USER_VALUE", 0)
+            isRunning = it.getBoolean("IS_RUNNING", false)
+            a = it.getInt("FIB_A", 0)
+            b = it.getInt("FIB_B", 1)
+            fibValue = it.getInt("FIB_VALUE", 0)
+            binding.tvCounter.text = it.getString("STATE_TEXT", "default")
+
+            if (isRunning) {
+                runCounter(userValue, resume = true)
+            }
+        }
 
         binding.startBtn.setOnClickListener {
             if (isRunning) {
                 cancelCounter()
+                binding.tvCounter.text = ""
             } else {
-                val userVal = binding.editText.text.toString().toInt()
+                val userVal = binding.editText.text.toString().toIntOrNull() ?: -1
                 if (userVal >= 0) {
-                    runCounter(userVal)
+                    userValue = userVal
+                    runCounter(userValue)
                 } else {
                     binding.tvCounter.text = "Enter a valid number"
                 }
             }
         }
+    }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("CURRENT_COUNT", currentCount)
+        outState.putInt("USER_VALUE", userValue)
+        outState.putBoolean("IS_RUNNING", isRunning)
+        outState.putString("STATE_TEXT", binding.tvCounter.text.toString())
+
+        outState.putInt("FIB_A", a)
+        outState.putInt("FIB_B", b)
+        outState.putInt("FIB_VALUE", fibValue)
     }
 
     private fun cancelCounter() {
         isRunning = false
         counterThread?.interrupt()
-        counterThread = null
         resetUI()
     }
 
     private fun resetUI() {
-        handler.post {
-            binding.startBtn.text = "START"
-            binding.editText.isEnabled = true
-        }
+        binding.startBtn.text = "START"
+        binding.editText.isEnabled = true
     }
 
+    private var counterThread: Thread? = null
 
-    private fun runCounter(n: Int){
+    private fun runCounter(n: Int, resume: Boolean = false) {
         isRunning = true
         binding.editText.isEnabled = false
         binding.startBtn.text = "CANCEL"
 
-        counterThread = Thread {
-            for(i in 0..n){
-                if (!isRunning) break
-                var showedText = ""
-                if (i == n){
-                    showedText = "Result is ${fibCounter(n)}"
-                    handler.post { resetUI() } // Ensure UI is reset properly
-                } else {
-                    showedText = "Current is $i"
-                }
+        if (!resume) {
+            a = 0
+            b = 1
+            fibValue = 0
+        }
 
-                val message = Message().apply {
-                    data = bundleOf(COUNTER_KEY to showedText)
+        counterThread = Thread {
+            for (i in (if (resume) currentCount+1 else 0)..n) {
+                if (!isRunning) break
+
+                fibValue = if (i == 0) 0 else if (i == 1) 1 else a + b
+                a = b
+                b = fibValue
+
+                currentCount = i
+                runOnUiThread {
+                    binding.tvCounter.text = "Current: $i, Fibonacci: $fibValue"
                 }
-                handler.sendMessage(message)
                 try {
                     Thread.sleep(500)
-                } catch (e: InterruptedException) {
-                    handler.post {
-                        resetUI()
-                        binding.tvCounter.text = ""
-                    }
+                } catch (e: InterruptedException){
                     break
                 }
             }
             isRunning = false
-
+            runOnUiThread { resetUI() }
         }
         counterThread?.start()
     }
 
-
-    companion object {
-        private const val COUNTER_KEY = "COUNTER_KEY"
-    }
 }
 
-//1, 2, 3, 4, 5, 6, 7,  8, 9
-//1, 1, 2, 3, 5, 8, 13, 21
-fun fibCounter(n: Int): Int {
-    if (n == 0) return 0
-    if (n == 1) return 1
-    var a = 0
-    var b = 1
-    var result = 1
-    for (i in 2..n) {
-        result = a + b
-        a = b
-        b = result
-    }
-    return result
-}
+
+
+
+
+//    private fun runCounter(n: Int, resume: Boolean = false) {
+//        isRunning = true
+//        binding.editText.isEnabled = false
+//        binding.startBtn.text = "CANCEL"
+//
+//        job = lifecycleScope.launch {
+//            for (i in (if (resume) currentCount else 0)..n) {
+//                currentCount = i
+//                if (!isRunning) break
+//                binding.tvCounter.text = "Current: $i"
+//                delay(500)
+//
+//                if (i == n) {
+//                    val result = withContext(Dispatchers.Default) { fibCounter(n) }
+//                    withContext(Dispatchers.Main) {
+//                        binding.tvCounter.text = "Result is $result"
+//                        resetUI()
+//                    }
+//                }
+//            }
+//            isRunning = false
+//        }
+//    }
+
+//    private fun runCounter(n: Int, resume: Boolean = false) {
+//        isRunning = true
+//        binding.editText.isEnabled = false
+//        binding.startBtn.text = "CANCEL"
+//
+//        var a = 0
+//        var b = 1
+//        var fibValue = 0 // Store the current Fibonacci value
+//
+//        job = lifecycleScope.launch {
+//            for (i in (if (resume) currentCount else 0)..n) {
+//                if (!isRunning) break
+//
+//                // Compute Fibonacci at this step
+//                fibValue = if (i == 0) 0 else if (i == 1) 1 else a + b
+//
+//                // Update UI with both counter and Fibonacci value
+//                binding.tvCounter.text = "Current: $i, Fibonacci: $fibValue"
+//
+//                a = b
+//                b = fibValue
+//
+//                currentCount = i // Store the current count for state restoration
+//                delay(500) // Wait before next step
+//            }
+//            isRunning = false
+//            resetUI()
+//        }
+//    }
