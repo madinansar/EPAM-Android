@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completed Color"
+        />
+
+    <RadioGroup
+        android:id="@+id/radioGroupCompleted"
+        android:layout_width="match_parent"
+        android:layout_height="118dp">
+
+        <RadioButton
+            android:id="@+id/RBgreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Green" />
+
+        <RadioButton
+            android:id="@+id/RBblue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Blue" />
+
+        <RadioButton
+            android:id="@+id/RByellow"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:text="Yellow" />
+
+    </RadioGroup>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not Completed Color"
+        />
+
+    <RadioGroup
+        android:id="@+id/radioGroupNot"
+        android:layout_width="match_parent"
+        android:layout_height="118dp">
+
+        <RadioButton
+            android:id="@+id/RBbrown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Brown" />
+
+        <RadioButton
+            android:id="@+id/RBpink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pink" />
+
+        <RadioButton
+            android:id="@+id/RBviolet"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:text="Violet" />
+
+    </RadioGroup>
+
+
+</LinearLayout>
