@@ -1,0 +1,22 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/currencyName"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        tools:text="currentcy name"
+        />
+
+    <TextView
+        android:id="@+id/currencyRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="currentcy rate"
+        />
+</LinearLayout>
