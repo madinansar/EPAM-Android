@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/challengesFragment">
+
+    <fragment
+        android:id="@+id/challengesFragment"
+        android:name="com.example.challengedraft.views.ChallengesFragment"
+        android:label="Challenges"
+        tools:layout="@layout/fragment_challenges"
+        >
+        <action
+            android:id="@+id/action_challengesFragment_to_participantsFragment"
+            app:destination="@id/participantsFragment">
+            <argument
+                android:name="challengeId"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/participantsFragment"
+        android:name="com.example.challengedraft.views.ParticipantsFragment"
+        android:label="Participants"
+        tools:layout="@layout/fragment_participants"
+        >
+        <argument
+            android:name="challengeId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/joinFragment"
+        android:name="com.example.challengedraft.views.JoinFragment"
+        android:label="Participants"
+        tools:layout="@layout/fragment_join"
+        >
+        <action
+            android:id="@+id/action_joinFragment_to_challengesFragment"
+            app:destination="@id/challengesFragment" >
+
+            <argument
+                android:name="challengeId"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/prefsFragment"
+        android:name="com.example.challengedraft.views.PrefsFragment"
+        android:label="Participants"
+        tools:layout="@layout/fragment_prefs"
+        >
+    </fragment>
+
+
+
+
+
+</navigation>

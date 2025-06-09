@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:layout_marginTop="?attr/actionBarSize"
+    >
+    <TextView
+        android:id="@+id/challengeId_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="ChallengeTitle: 777777"
+        android:textColor="@color/black"
+        android:paddingBottom="10dp"
+        />
+    <EditText
+        android:id="@+id/participant_name_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="New Participant"
+        />
+
+    <Button
+        android:id="@+id/add_participant_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Participant"
+        android:outlineAmbientShadowColor="@color/purple_200"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/participantRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/participant_item"
+        tools:itemCount="5" />
+
+
+</LinearLayout>

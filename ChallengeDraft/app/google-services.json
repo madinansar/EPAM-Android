@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "888481942985",
+    "project_id": "capstonedraft-madina",
+    "storage_bucket": "capstonedraft-madina.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888481942985:android:a67ddb93f40104b36e6c18",
+        "android_client_info": {
+          "package_name": "com.example.challengedraft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArwuqXX3JOjqLHod7e-zr6P7UIDoNjlNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
